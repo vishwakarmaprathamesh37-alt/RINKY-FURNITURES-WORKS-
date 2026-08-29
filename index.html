@@ -3,469 +3,201 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RAJESH FURNITURE WORKS</title>
+  <title>RINKY FURNITURE WORKS</title>
   <style>
-    /* Global Reset & Base Styles */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0b0f19;
-      color: #e2e8f0;
-      line-height: 1.6;
-      scroll-behavior: smooth;
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #161f32;
+      --text-color: #e2e8f0;
+      --accent-color: #00e699;
+      --nav-bg: rgba(11, 15, 25, 0.95);
     }
 
-    /* Navigation */
+    body.light-mode {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-color: #0f172a;
+      --accent-color: #059669;
+      --nav-bg: rgba(255, 255, 255, 0.95);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Header & Navigation */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 2rem;
-      background: rgba(11, 15, 25, 0.95);
+      padding: 1.2rem 2rem;
+      background: var(--nav-bg);
       position: fixed;
-      top: 0;
-      width: 100%;
+      top: 0; width: 100%;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     .logo {
-      font-weight: 700;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
-      color: #ffffff;
-      text-transform: uppercase;
-    }
-    nav a {
-      color: #94a3b8;
-      text-decoration: none;
-      margin-left: 1.5rem;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #ffffff;
-    }
-
-    /* Hero Carousel Section */
-    .hero-slider {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-      margin-top: 0;
-    }
-    .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .slide.active {
-      opacity: 1;
-    }
-    .slide-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(11, 15, 25, 0.65);
-    }
-    .slide-content {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      max-width: 800px;
-      padding: 0 1.5rem;
-    }
-    .slide-content h1 {
-      font-size: 2.8rem;
       font-weight: 800;
-      margin-bottom: 1rem;
-      color: #ffffff;
-    }
-    .slide-content p {
       font-size: 1.1rem;
-      color: #cbd5e1;
-    }
-
-    /* Slider Controls */
-    .slider-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      padding: 0.8rem 1.2rem;
-      cursor: pointer;
-      border-radius: 50%;
-      z-index: 20;
-      transition: background 0.3s;
-    }
-    .slider-arrow:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
-    .prev { left: 1.5rem; }
-    .next { right: 1.5rem; }
-
-    .dots-container {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 0.5rem;
-      z-index: 20;
-    }
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.4);
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .dot.active {
-      background: #ffffff;
-    }
-
-    /* Content Sections */
-    section {
-      padding: 5rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 3rem;
-      color: #ffffff;
-      text-transform: uppercase;
+      color: var(--accent-color);
       letter-spacing: 1px;
     }
-
-    /* Curated Collections Grid */
-    .collections-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    .card {
-      background: #161f32;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-    .card-body {
-      padding: 1.5rem;
-    }
-    .card-body h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-      color: #ffffff;
-    }
-    .card-body p {
-      color: #94a3b8;
-      font-size: 0.95rem;
+    .hamburger {
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--text-color);
     }
 
-    /* Core Values / Features */
-    .values-container {
+    /* Fullscreen Menu Overlay */
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-color);
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
     }
-    .value-item {
-      background: #161f32;
-      padding: 1.5rem;
-      border-radius: 8px;
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
+    .nav-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
     }
-    .value-icon {
+    .close-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    .nav-overlay a {
+      color: var(--text-color);
+      text-decoration: none;
       font-size: 1.5rem;
-      color: #38bdf8;
+      font-weight: 700;
+      letter-spacing: 2px;
     }
-    .value-text h4 {
-      font-size: 1.1rem;
-      color: #ffffff;
-      margin-bottom: 0.3rem;
-    }
-    .value-text p {
-      color: #94a3b8;
-      font-size: 0.9rem;
-    }
-
-    /* Contact Section */
-    .contact-form {
-      background: #161f32;
-      padding: 2.5rem;
-      border-radius: 8px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: #cbd5e1;
-    }
-    .form-group input, .form-group textarea {
-      width: 100%;
-      padding: 0.8rem;
-      border-radius: 4px;
-      border: 1px solid #334155;
-      background: #0b0f19;
-      color: #ffffff;
-      font-size: 1rem;
-    }
-    .form-group textarea {
-      resize: vertical;
-      height: 120px;
-    }
-    .submit-btn {
-      width: 100%;
-      padding: 0.9rem;
+    .theme-toggle {
+      margin-top: 1rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 30px;
       border: none;
-      border-radius: 4px;
-      background: #38bdf8;
+      background: var(--accent-color);
       color: #0b0f19;
       font-weight: 700;
-      font-size: 1rem;
       cursor: pointer;
-      transition: background 0.3s;
-    }
-    .submit-btn:hover {
-      background: #0284c7;
     }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #070a11;
-      color: #64748b;
-      font-size: 0.85rem;
-      border-top: 1px solid #1e293b;
+    /* Sections */
+    section { padding: 6rem 1.5rem 3rem; max-width: 900px; margin: 0 auto; }
+    .tagline { color: var(--accent-color); font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+    h1.heading { font-size: 2.2rem; font-weight: 800; margin: 0.5rem 0 1.5rem; line-height: 1.2; }
+    h1.heading span { color: var(--accent-color); }
+    
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
     }
+    .stat-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .stat-number { font-size: 2rem; font-weight: 800; color: var(--accent-color); }
+    .stat-label { font-size: 0.8rem; color: #94a3b8; letter-spacing: 1px; }
+
+    /* Feature Cards */
+    .feature-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 16px;
+      margin-top: 1.5rem;
+    }
+    .feature-card h3 { margin-bottom: 0.8rem; font-size: 1.3rem; }
+    .feature-card p { color: #94a3b8; font-size: 0.95rem; }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Header -->
   <header>
-    <div class="logo">Rajesh Furniture Works</div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#collections">Collections</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="logo">RINKY FURNITURE WORKS</div>
+    <div class="hamburger" id="openMenu">&#9776;</div>
   </header>
 
-  <!-- Hero Carousel Slider -->
-  <div class="hero-slider" id="home">
-    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=80');">
-      <div class="slide-overlay"></div>
-      <div class="slide-content">
-        <h1>Sustainable Materials</h1>
-        <p>Crafted with precision using eco-friendly resources that don't compromise on durability or style.</p>
-      </div>
-    </div>
-
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80');">
-      <div class="slide-overlay"></div>
-      <div class="slide-content">
-        <h1>Minimalist Comfort</h1>
-        <p>Discover pieces designed for living with clean lines and modern aesthetics tailored for your space.</p>
-      </div>
-    </div>
-
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80');">
-      <div class="slide-overlay"></div>
-      <div class="slide-content">
-        <h1>The Workspace Redefined</h1>
-        <p>Elevate your productivity with ergonomic designs built for the modern professional.</p>
-      </div>
-    </div>
-
-    <!-- Controls -->
-    <button class="slider-arrow prev" id="prevBtn">&#10094;</button>
-    <button class="slider-arrow next" id="nextBtn">&#10095;</button>
-
-    <div class="dots-container" id="dotsContainer"></div>
+  <!-- Overlay Navigation -->
+  <div class="nav-overlay" id="navOverlay">
+    <div class="close-btn" id="closeMenu">&times;</div>
+    <a href="#home" onclick="toggleMenu()">HOME</a>
+    <a href="#about" onclick="toggleMenu()">ABOUT</a>
+    <a href="#collections" onclick="toggleMenu()">COLLECTIONS</a>
+    <a href="#contact" onclick="toggleMenu()">CONTACT</a>
+    <button class="theme-toggle" id="themeBtn">☀ LIGHT MODE</button>
   </div>
 
-  <!-- Curated Collections Section -->
-  <section id="collections">
-    <h2 class="section-title">Curated Collections</h2>
-    <div class="collections-grid">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80" alt="Kitchen Fittings" />
-        <div class="card-body">
-          <h3>Kitchen Fittings</h3>
-          <p>Sleek, durable hardware designed to elevate your daily cooking and storage experience.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=600&q=80" alt="Dining Essentials" />
-        <div class="card-body">
-          <h3>Dining Essentials</h3>
-          <p>Built to last generations. Crafted from responsibly sourced timber.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=80" alt="Modular Shelving" />
-        <div class="card-body">
-          <h3>Modular Shelving</h3>
-          <p>Adaptable storage solutions that grow and change with your space.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Core Values Section -->
+  <!-- About / Journey Section -->
   <section id="about">
-    <h2 class="section-title">Our Values</h2>
-    <div class="values-container">
-      <div class="value-item">
-        <div class="value-icon">&#10003;</div>
-        <div class="value-text">
-          <h4>Premium Materials</h4>
-          <p>Responsibly sourced timber and best quality wood that guarantee longevity.</p>
-        </div>
+    <div class="tagline">THE JOURNEY</div>
+    <h1 class="heading">From a small workshop to a <span>design powerhouse.</span></h1>
+    <p>What started in a small, dusty garage as a passion for restoring vintage chairs has evolved into RINKY FURNITURE WORKS. We recognized early on that furniture isn't just functional; it is the silent witness to your life's best moments.</p>
+    <br>
+    <p>Our philosophy is rooted in the belief that true luxury lies in the details. By sourcing sustainable materials and employing master craftsmen, we ensure that every cut, every joint, and every polish is executed with uncompromising perfection.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">25+</div>
+        <div class="stat-label">YEARS OF MASTERY</div>
       </div>
-      <div class="value-item">
-        <div class="value-icon">&#9719;</div>
-        <div class="value-text">
-          <h4>Timeless Design</h4>
-          <p>Crafted to blend seamlessly with both contemporary and traditional spaces.</p>
-        </div>
+      <div class="stat-card">
+        <div class="stat-number">15k</div>
+        <div class="stat-label">PIECES DELIVERED</div>
       </div>
-      <div class="value-item">
-        <div class="value-icon">&#9889;</div>
-        <div class="value-text">
-          <h4>Artisanal Craftsmanship</h4>
-          <p>Every joint and curve is meticulously shaped by master woodworkers to create functional art.</p>
-        </div>
-      </div>
+    </div>
+
+    <div class="feature-card">
+      <h3>Sustainability First</h3>
+      <p>We source our timber exclusively from certified sustainable forests and utilize non-toxic, eco-friendly finishes to protect both your home and our planet.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>Uncompromised Quality</h3>
+      <p>We do not believe in mass production. Every joint is inspected, every fabric is tested, ensuring that the furniture you buy today becomes a family heirloom tomorrow.</p>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2 class="section-title">Get In Touch</h2>
-    <form class="contact-form" onsubmit="event.preventDefault(); alert('Message Sent!');">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" required placeholder="Your Full Name" />
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" required placeholder="your.email@example.com" />
-      </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" required placeholder="How can we help you?"></textarea>
-      </div>
-      <button type="submit" class="submit-btn">Send Message</button>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    &copy; 2026 RAJESH FURNITURE WORKS. All rights reserved.
-  </footer>
-
-  <!-- JavaScript for Carousel functionality -->
   <script>
-    const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const dotsContainer = document.getElementById('dotsContainer');
+    const openMenu = document.getElementById('openMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const navOverlay = document.getElementById('navOverlay');
+    const themeBtn = document.getElementById('themeBtn');
 
-    let currentSlide = 0;
-    let slideInterval;
+    function toggleMenu() {
+      navOverlay.classList.toggle('active');
+    }
 
-    // Create pagination dots
-    slides.forEach((_, index) => {
-      const dot = document.createElement('div');
-      dot.classList.add('dot');
-      if (index === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => goToSlide(index));
-      dotsContainer.appendChild(dot);
+    openMenu.addEventListener('click', toggleMenu);
+    closeMenu.addEventListener('click', toggleMenu);
+
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      if(document.body.classList.contains('light-mode')) {
+        themeBtn.textContent = '🌙 DARK MODE';
+      } else {
+        themeBtn.textContent = '☀ LIGHT MODE';
+      }
     });
-
-    const dots = document.querySelectorAll('.dot');
-
-    function updateSlide() {
-      slides.forEach((slide, index) => {
-        slide.classList.toggle('active', index === currentSlide);
-      });
-      dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
-      });
-    }
-
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      updateSlide();
-    }
-
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      updateSlide();
-    }
-
-    function goToSlide(index) {
-      currentSlide = index;
-      updateSlide();
-      resetTimer();
-    }
-
-    function startTimer() {
-      slideInterval = setInterval(nextSlide, 4000);
-    }
-
-    function resetTimer() {
-      clearInterval(slideInterval);
-      startTimer();
-    }
-
-    // Event Listeners for arrows
-    nextBtn.addEventListener('click', () => {
-      nextSlide();
-      resetTimer();
-    });
-
-    prevBtn.addEventListener('click', () => {
-      prevSlide();
-      resetTimer();
-    });
-
-    // Start auto slider
-    startTimer();
   </script>
 </body>
 </html>
