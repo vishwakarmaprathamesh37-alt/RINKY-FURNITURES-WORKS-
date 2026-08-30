@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RINKY FURNITURE WORKS - Online Store</title>
+  <title>RINKY FURNITURE WORKS</title>
   <style>
     :root {
       --primary: #121212;
@@ -13,45 +13,27 @@
       --text: #1e293b;
       --border: #e2e8f0;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); }
-
-    .top-bar { background: var(--primary); color: #fff; text-align: center; padding: 0.6rem; font-size: 0.85rem; font-weight: 500; }
-
+    .top-bar { background: var(--primary); color: #fff; text-align: center; padding: 0.6rem; font-size: 0.85rem; }
     header { background: #fff; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
     .header-main { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; border-bottom: 1px solid var(--border); }
-    .logo { font-size: 1.4rem; font-weight: 900; color: var(--accent); letter-spacing: 1px; cursor: pointer; }
+    .logo { font-size: 1.4rem; font-weight: 900; color: var(--accent); cursor: pointer; }
+    .header-right a { text-decoration: none; color: var(--text); font-weight: 600; margin-left: 1.5rem; font-size: 0.9rem; }
+    .header-right a:hover { color: var(--accent); }
     
-    /* Navigation Right Links */
-    .header-right-links { display: flex; gap: 1.5rem; }
-    .header-right-links a { text-decoration: none; color: var(--text); font-size: 0.9rem; font-weight: 600; }
-    .header-right-links a:hover { color: var(--accent); }
-
-    /* Category Nav */
     .nav-links { display: flex; list-style: none; gap: 2rem; padding: 0.8rem 2rem; background: #fff; border-bottom: 1px solid var(--border); }
     .nav-item { position: relative; font-weight: 600; font-size: 0.9rem; cursor: pointer; padding-bottom: 0.3rem; }
     .nav-item:hover { color: var(--accent); }
-
+    
     .dropdown { display: none; position: absolute; top: 100%; left: 0; background: #fff; box-shadow: 0 8px 16px rgba(0,0,0,0.1); border-radius: 6px; padding: 0.8rem; width: 200px; z-index: 100; }
     .nav-item:hover .dropdown { display: block; }
     .dropdown div { padding: 0.5rem 0; color: var(--text); font-size: 0.85rem; cursor: pointer; }
     .dropdown div:hover { color: var(--accent); }
 
-    /* Auto Sliding Hero Banner */
     .hero-banner { 
-      position: relative;
-      height: 380px; 
-      display: flex; 
-      flex-direction: column; 
-      justify-content: center; 
-      align-items: center; 
-      color: white; 
-      text-align: center; 
-      padding: 1rem;
-      transition: background-image 1s ease-in-out;
-      background-size: cover;
-      background-position: center;
+      position: relative; height: 380px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 1rem;
+      background-size: cover; background-position: center; transition: background-image 1s ease-in-out;
     }
     .hero-banner::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); z-index: 1; }
     .hero-content { position: relative; z-index: 2; }
@@ -60,23 +42,19 @@
     .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
     .section-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem; text-transform: uppercase; }
 
-    /* Shop By Category Icons */
     .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
     .cat-card { background: var(--card-bg); padding: 1.2rem 1rem; text-align: center; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; transition: 0.3s; }
-    .cat-card:hover, .cat-card.active { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-    .cat-card svg { width: 40px; height: 40px; fill: var(--accent); margin-bottom: 0.5rem; }
-    .cat-card span { display: block; font-size: 0.85rem; font-weight: 700; }
+    .cat-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .cat-card span { display: block; font-size: 0.85rem; font-weight: 700; margin-top: 0.5rem; }
 
-    /* Shop Layout */
     .shop-layout { display: grid; grid-template-columns: 240px 1fr; gap: 2rem; }
     .filter-sidebar { background: var(--card-bg); padding: 1.2rem; border-radius: 8px; border: 1px solid var(--border); height: fit-content; }
     .filter-group { margin-bottom: 1.5rem; }
     .filter-group h4 { font-size: 0.95rem; margin-bottom: 0.8rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
     .filter-group label { display: block; font-size: 0.85rem; margin-bottom: 0.5rem; cursor: pointer; color: #475569; }
 
-    /* Product Grid */
     .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
-    .product-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: 0.3s; display: block; }
+    .product-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: 0.3s; }
     .product-img { width: 100%; height: 220px; object-fit: cover; }
     .product-details { padding: 1rem; }
     .product-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
@@ -87,28 +65,23 @@
     .buy-btn { display: block; width: 100%; text-align: center; background: #25d366; color: white; text-decoration: none; padding: 0.6rem; border-radius: 5px; font-weight: 700; font-size: 0.85rem; }
 
     footer { background: var(--primary); color: #fff; text-align: center; padding: 2rem; margin-top: 4rem; font-size: 0.85rem; }
-
-    @media (max-width: 768px) {
-      .shop-layout { grid-template-columns: 1fr; }
-      .nav-links { overflow-x: auto; white-space: nowrap; }
-    }
+    @media (max-width: 768px) { .shop-layout { grid-template-columns: 1fr; } .nav-links { overflow-x: auto; white-space: nowrap; } }
   </style>
 </head>
 <body>
 
-  <div class="top-bar">✨ Special Offer: Premium Solid Wood Furniture & Custom Interior Design Work!</div>
+  <div class="top-bar">✨ Special Offer: Premium Solid Wood Furniture & Custom Interior Work!</div>
 
   <header>
     <div class="header-main">
       <div class="logo" onclick="filterCategory('all')">RINKY FURNITURE WORKS</div>
-      <div class="header-right-links">
+      <div class="header-right">
         <a href="#" onclick="filterCategory('all')">Home</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
 
-    <!-- Mega Navigation -->
     <ul class="nav-links">
       <li class="nav-item">
         Sofas & Seating
@@ -116,37 +89,31 @@
           <div onclick="filterCategory('sofa')">3 Seater Sofas</div>
           <div onclick="filterCategory('sofa')">L-Shape Sofas</div>
           <div onclick="filterCategory('sofa')">Recliners</div>
-          <div onclick="filterCategory('sofa')">Sofa Cum Beds</div>
         </div>
       </li>
       <li class="nav-item">
         Living Room
         <div class="dropdown">
           <div onclick="filterCategory('tv')">TV Units</div>
-          <div onclick="filterCategory('sofa')">Coffee Tables</div>
           <div onclick="filterCategory('shoe')">Shoe Racks</div>
         </div>
       </li>
       <li class="nav-item">
         Bedroom
         <div class="dropdown">
-          <div onclick="filterCategory('bed')">King Size Beds</div>
-          <div onclick="filterCategory('bed')">Queen Size Beds</div>
-          <div onclick="filterCategory('wardrobe')">Modular Wardrobes</div>
+          <div onclick="filterCategory('bed')">Beds & Mattresses</div>
+          <div onclick="filterCategory('wardrobe')">Wardrobes</div>
         </div>
       </li>
       <li class="nav-item">
         Dining & Kitchen
         <div class="dropdown">
-          <div onclick="filterCategory('dining')">4/6 Seater Dining Sets</div>
-          <div onclick="filterCategory('dining')">Kitchen Cabinets</div>
+          <div onclick="filterCategory('dining')">Dining Sets</div>
         </div>
       </li>
-      <li class="nav-item" onclick="filterCategory('wardrobe')">Storage & Shelving</li>
     </ul>
   </header>
 
-  <!-- Auto Changing Hero Banner -->
   <div class="hero-banner" id="heroBanner">
     <div class="hero-content">
       <h1>Crafted For Comfort, Built For Life</h1>
@@ -155,133 +122,58 @@
   </div>
 
   <div class="container">
-    
-    <!-- Category Icons Filter -->
     <h2 class="section-title">Shop By Category</h2>
     <div class="category-grid">
-      <div class="cat-card" onclick="filterCategory('sofa')">
-        <svg viewBox="0 0 24 24"><path d="M20 10V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3a3 3 0 0 0-3 3v5h2v2h2v-2h10v2h2v-2h2v-5a3 3 0 0 0-3-3z"/></svg>
-        <span>Sofas</span>
-      </div>
-      <div class="cat-card" onclick="filterCategory('bed')">
-        <svg viewBox="0 0 24 24"><path d="M19 7h-8v8H3V5H1v15h2v-3h18v3h2v-9a4 4 0 0 0-4-4z"/></svg>
-        <span>Beds</span>
-      </div>
-      <div class="cat-card" onclick="filterCategory('dining')">
-        <svg viewBox="0 0 24 24"><path d="M5 3h14v2H5zm1 4h12v3H6zm-2 5h16v2H4zm3 4h2v5H7zm8 0h2v5h-2z"/></svg>
-        <span>Dining</span>
-      </div>
-      <div class="cat-card" onclick="filterCategory('wardrobe')">
-        <svg viewBox="0 0 24 24"><path d="M4 21h16V3H4v18zm2-16h5v14H6V5zm7 0h5v14h-5V5z"/></svg>
-        <span>Wardrobes</span>
-      </div>
-      <div class="cat-card" onclick="filterCategory('tv')">
-        <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
-        <span>TV Units</span>
-      </div>
-      <div class="cat-card" onclick="filterCategory('shoe')">
-        <svg viewBox="0 0 24 24"><path d="M2 18h20v2H2zm1.5-4h17l-2-6h-13z"/></svg>
-        <span>Shoe Racks</span>
-      </div>
+      <div class="cat-card" onclick="filterCategory('sofa')"><span>🛋️ Sofas</span></div>
+      <div class="cat-card" onclick="filterCategory('bed')"><span>🛏️ Beds</span></div>
+      <div class="cat-card" onclick="filterCategory('dining')"><span>🍽️ Dining</span></div>
+      <div class="cat-card" onclick="filterCategory('wardrobe')"><span>🚪 Wardrobes</span></div>
+      <div class="cat-card" onclick="filterCategory('tv')"><span>📺 TV Units</span></div>
+      <div class="cat-card" onclick="filterCategory('shoe')"><span>🥿 Shoe Racks</span></div>
     </div>
 
-    <!-- Product Grid Section -->
     <h2 class="section-title" id="featuredTitle">Featured Collections</h2>
     <div class="shop-layout">
-      
       <div class="filter-sidebar">
         <div class="filter-group">
           <h4>Material</h4>
           <label><input type="checkbox" checked /> Solid Teak Wood</label>
           <label><input type="checkbox" /> Sheesham Wood</label>
-          <label><input type="checkbox" /> Engineered Wood</label>
-        </div>
-        <div class="filter-group">
-          <h4>Price Range</h4>
-          <label><input type="checkbox" /> Under ₹10,000</label>
-          <label><input type="checkbox" checked /> ₹10,000 - ₹25,000</label>
-          <label><input type="checkbox" /> Above ₹25,000</label>
         </div>
       </div>
 
       <div class="product-grid" id="productGrid">
-        
-        <!-- PRODUCT ITEM 1 -->
-        <!-- PHOTO EDIT: Change src="IMAGE_NAME.jpg" below to change image -->
-        <!-- PRICE EDIT: Change ₹24,999 or Title text below -->
         <div class="product-card" data-category="dining">
-          <img src="WhatsApp%20Image%202026-08-29%20at%205.13.59%20PM.jpeg" class="product-img" alt="Modular Kitchen" />
+          <img src="img1.jpeg" class="product-img" alt="Item" />
           <div class="product-details">
             <div class="product-title">Custom Kitchen Modular Setup</div>
             <div class="product-material">Waterproof Ply | Glossy Finish</div>
-            <div class="price-box">
-              <span class="price">₹24,999</span>
-              <span class="mrp">₹35,000</span>
-            </div>
+            <div class="price-box"><span class="price">₹24,999</span><span class="mrp">₹35,000</span></div>
             <a href="https://wa.me/?text=Hi%2C%20I%20am%20interested%20in%20Custom%20Kitchen%20Modular%20Setup" class="buy-btn" target="_blank">Inquire on WhatsApp</a>
           </div>
         </div>
 
-        <!-- PRODUCT ITEM 2 -->
         <div class="product-card" data-category="dining">
-          <img src="WhatsApp%20Image%202026-08-29%20at%205.21.51%20PM.jpeg" class="product-img" alt="Dining Set" />
+          <img src="img2.jpeg" class="product-img" alt="Item" />
           <div class="product-details">
             <div class="product-title">Solid Wood Dining Chair & Table</div>
             <div class="product-material">Teak Wood | Polish Finish</div>
-            <div class="price-box">
-              <span class="price">₹18,499</span>
-              <span class="mrp">₹24,000</span>
-            </div>
-            <a href="https://wa.me/?text=Hi%2C%20I%20am%20interested%20in%20Solid%20Wood%20Dining%20Set" class="buy-btn" target="_blank">Inquire on WhatsApp</a>
+            <div class="price-box"><span class="price">₹18,499</span><span class="mrp">₹24,000</span></div>
+            <a href="https://wa.me/?text=Hi%2C%20I%20am%20interested%20in%20Dining%20Set" class="buy-btn" target="_blank">Inquire on WhatsApp</a>
           </div>
         </div>
 
-        <!-- PRODUCT ITEM 3 -->
         <div class="product-card" data-category="sofa">
-          <img src="WhatsApp%20Image%202026-08-29%20at%205.24.36%20PM.jpeg" class="product-img" alt="Sofa" />
+          <img src="img3.jpeg" class="product-img" alt="Item" />
           <div class="product-details">
             <div class="product-title">Modern Living Room Sofa</div>
             <div class="product-material">Premium Fabric | Hardwood Frame</div>
-            <div class="price-box">
-              <span class="price">₹21,999</span>
-              <span class="mrp">₹30,000</span>
-            </div>
-            <a href="https://wa.me/?text=Hi%2C%20I%20am%20interested%20in%20Modern%20Living%20Room%20Sofa" class="buy-btn" target="_blank">Inquire on WhatsApp</a>
+            <div class="price-box"><span class="price">₹21,999</span><span class="mrp">₹30,000</span></div>
+            <a href="https://wa.me/?text=Hi%2C%20I%20am%20interested%20in%20Sofa" class="buy-btn" target="_blank">Inquire on WhatsApp</a>
           </div>
         </div>
-
-        <!-- PRODUCT ITEM 4 -->
-        <div class="product-card" data-category="wardrobe">
-          <img src="WhatsApp%20Image%202026-08-29%20at%205.31.34%20PM.jpeg" class="product-img" alt="Wardrobe" />
-          <div class="product-details">
-            <div class="product-title">Modular Storage Cabinet / Wardrobe</div>
-            <div class="product-material">Engineered Wood | Matte Finish</div>
-            <div class="price-box">
-              <span class="price">₹15,999</span>
-              <span class="mrp">₹22,000</span>
-            </div>
-            <a href="https://wa.me/?text=Hi%2C%20I%20am%20interested%20in%20Modular%20Storage%20Cabinet" class="buy-btn" target="_blank">Inquire on WhatsApp</a>
-          </div>
-        </div>
-
-        <!-- PRODUCT ITEM 5 -->
-        <div class="product-card" data-category="shoe">
-          <img src="WhatsApp%20Image%202026-08-29%20at%205.31.35%20PM.jpeg" class="product-img" alt="Storage Rack" />
-          <div class="product-details">
-            <div class="product-title">Designer Wood Storage & Shoe Rack</div>
-            <div class="product-material">Solid Teak Wood | Natural Finish</div>
-            <div class="price-box">
-              <span class="price">₹11,499</span>
-              <span class="mrp">₹16,000</span>
-            </div>
-            <a href="https://wa.me/?text=Hi%2C%20I%20am%20interested%20in%20Designer%20Wood%20Storage%20Rack" class="buy-btn" target="_blank">Inquire on WhatsApp</a>
-          </div>
-        </div>
-
       </div>
-
     </div>
-
   </div>
 
   <footer id="contact">
@@ -291,13 +183,8 @@
   </footer>
 
   <script>
-    // Background Image Auto-Slider
     const heroBanner = document.getElementById('heroBanner');
-    const heroImages = [
-      'WhatsApp%20Image%202026-08-29%20at%205.13.59%20PM.jpeg',
-      'WhatsApp%20Image%202026-08-29%20at%205.21.51%20PM.jpeg',
-      'WhatsApp%20Image%202026-08-29%20at%205.24.36%20PM.jpeg'
-    ];
+    const heroImages = ['img1.jpeg', 'img2.jpeg', 'img3.jpeg'];
     let currentImgIndex = 0;
 
     function changeHeroBackground() {
@@ -305,18 +192,12 @@
       currentImgIndex = (currentImgIndex + 1) % heroImages.length;
     }
     changeHeroBackground();
-    setInterval(changeHeroBackground, 4000); // Swaps image every 4 seconds
+    setInterval(changeHeroBackground, 4000);
 
-    // Category Filter Function
     function filterCategory(category) {
       const products = document.querySelectorAll('.product-card');
       const title = document.getElementById('featuredTitle');
-      
-      if(category === 'all') {
-        title.innerText = 'Featured Collections';
-      } else {
-        title.innerText = category.toUpperCase() + ' COLLECTIONS';
-      }
+      title.innerText = category === 'all' ? 'Featured Collections' : category.toUpperCase() + ' COLLECTIONS';
 
       products.forEach(product => {
         if (category === 'all' || product.getAttribute('data-category') === category) {
@@ -327,6 +208,5 @@
       });
     }
   </script>
-
 </body>
 </html>
