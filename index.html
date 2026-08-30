@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RINKY FURNITURE WORKS</title>
+  <title>RINKY FURNITURE WORKS - Modern Handcrafted Furniture</title>
   <style>
     :root {
       --bg-color: #0f172a;
@@ -11,6 +11,7 @@
       --text-color: #f8fafc;
       --text-muted: #94a3b8;
       --accent: #f97316;
+      --accent-hover: #ea580c;
       --border-color: #334155;
       --nav-bg: rgba(15, 23, 42, 0.95);
     }
@@ -21,107 +22,125 @@
       --text-color: #0f172a;
       --text-muted: #475569;
       --accent: #ea580c;
+      --accent-hover: #c2410c;
       --border-color: #e2e8f0;
       --nav-bg: rgba(255, 255, 255, 0.95);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.3s, border-color 0.3s; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
 
-    /* Header & Nav */
+    /* Top Bar */
+    .top-bar { background: var(--accent); color: #fff; text-align: center; padding: 0.5rem; font-size: 0.85rem; font-weight: 700; }
+
+    /* Header Navigation */
     header { position: sticky; top: 0; z-index: 1000; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); }
     .header-wrapper { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; max-width: 1300px; margin: 0 auto; }
-    .logo { font-size: 1.3rem; font-weight: 900; color: var(--accent); cursor: pointer; text-transform: uppercase; }
+    .logo { font-size: 1.25rem; font-weight: 900; color: var(--accent); cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; }
 
-    .nav-tabs { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+    .nav-tabs { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
     .dropdown { position: relative; display: inline-block; }
-    .dropbtn { font-size: 0.85rem; font-weight: 700; color: var(--text-color); background: none; border: none; cursor: pointer; text-transform: uppercase; padding: 0.5rem 0; }
-    .dropdown-content { display: none; position: absolute; background-color: var(--card-bg); min-width: 180px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 8px; z-index: 1; top: 100%; left: 0; }
+    .dropbtn { font-size: 0.82rem; font-weight: 700; color: var(--text-color); background: none; border: none; cursor: pointer; text-transform: uppercase; padding: 0.5rem 0; }
+    .dropdown-content { display: none; position: absolute; background-color: var(--card-bg); min-width: 190px; box-shadow: 0px 8px 20px rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 8px; z-index: 10; top: 100%; left: 0; overflow: hidden; }
     .dropdown-content a { color: var(--text-color); padding: 10px 14px; text-decoration: none; display: block; font-size: 0.85rem; font-weight: 600; }
     .dropdown-content a:hover { background-color: var(--accent); color: #fff; }
     .dropdown:hover .dropdown-content { display: block; }
 
-    /* Theme Toggle Button */
-    .theme-toggle-btn { background: var(--accent); color: #fff; border: none; padding: 0.4rem 0.8rem; border-radius: 20px; font-weight: 700; cursor: pointer; font-size: 0.8rem; margin-left: 1rem; }
+    .theme-toggle-btn { background: var(--accent); color: #fff; border: none; padding: 0.4rem 0.8rem; border-radius: 20px; font-weight: 700; cursor: pointer; font-size: 0.8rem; }
 
     .container { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
 
     /* Hero Banner */
-    .hero-slider { position: relative; height: 350px; border-radius: 16px; overflow: hidden; margin-bottom: 2.5rem; border: 1px solid var(--border-color); }
+    .hero-slider { position: relative; height: 360px; border-radius: 16px; overflow: hidden; margin-bottom: 2.5rem; border: 1px solid var(--border-color); }
     .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease-in-out; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
     .slide.active { opacity: 1; }
-    .slide-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.6); }
-    .slide-content { position: relative; z-index: 2; color: #ffffff; }
-    .slide-content h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .slide-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.65); }
+    .slide-content { position: relative; z-index: 2; color: #ffffff; max-width: 750px; }
+    .slide-content h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 0.5rem; }
 
-    /* Category Cards */
-    .sec-title { font-size: 1.3rem; font-weight: 800; text-transform: uppercase; margin-bottom: 1.2rem; }
-    .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
-    .cat-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem; text-align: center; cursor: pointer; font-weight: 700; font-size: 0.9rem; }
-    .cat-card:hover { border-color: var(--accent); color: var(--accent); }
+    .sec-title { font-size: 1.3rem; font-weight: 800; text-transform: uppercase; margin: 2rem 0 1rem; color: var(--text-color); display: flex; align-items: center; justify-content: space-between; }
+
+    /* Category Filter Buttons */
+    .category-grid { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2rem; }
+    .cat-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.6rem 1.2rem; cursor: pointer; font-weight: 700; font-size: 0.85rem; }
+    .cat-card:hover, .cat-card.active { border-color: var(--accent); background: var(--accent); color: #fff; }
 
     /* Collections Grid */
-    .curated-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
-    .curated-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; cursor: pointer; }
-    .curated-card:hover { border-color: var(--accent); }
-    .curated-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .curated-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+    .curated-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
+    .curated-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .curated-card img { width: 100%; height: 190px; object-fit: cover; display: block; }
     .curated-info { padding: 1rem; }
-    .curated-title { font-weight: 700; font-size: 0.95rem; }
+    .curated-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .curated-sub { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* Testimonials Section */
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
+    .review-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 1.2rem; border-radius: 12px; }
+    .stars { color: #f59e0b; margin-bottom: 0.5rem; }
+
+    /* FAQ Section */
+    .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 0.8rem; padding: 1rem; cursor: pointer; }
+    .faq-question { font-weight: 700; display: flex; justify-content: space-between; }
+    .faq-answer { display: none; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem; }
 
     /* Modal Popup */
     .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 1rem; }
     .modal-backdrop.active { display: flex; }
-    .modal-box { background: var(--card-bg); border-radius: 14px; max-width: 650px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; position: relative; border: 1px solid var(--border-color); }
-    .modal-img { width: 100%; height: 100%; min-height: 250px; object-fit: cover; }
+    .modal-box { background: var(--card-bg); border-radius: 14px; max-width: 680px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; position: relative; border: 1px solid var(--border-color); }
+    .modal-img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; }
     .modal-body { padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; }
     .modal-close { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); color: #fff; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-weight: bold; }
+    .btn-wa { background: #25d366; color: #fff; border: none; padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 1rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; width: fit-content; font-size: 0.85rem; }
+    .btn-wa:hover { background: #1eb857; }
 
     footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border-color); margin-top: 3rem; font-size: 0.85rem; color: var(--text-muted); }
+    footer a { color: var(--accent); text-decoration: none; font-weight: bold; }
+
+    @media (max-width: 768px) {
+      .header-wrapper { flex-direction: column; gap: 0.8rem; }
+      .nav-tabs { flex-wrap: wrap; justify-content: center; }
+      .modal-box { grid-template-columns: 1fr; }
+      .hero-slider { height: 260px; }
+      .slide-content h1 { font-size: 1.5rem; }
+    }
   </style>
 </head>
 <body data-theme="dark">
+
+  <div class="top-bar">✨ Premium Solid Wood Furniture & Custom Interior Design Work | Thane</div>
 
   <header>
     <div class="header-wrapper">
       <div class="logo">RINKY FURNITURE WORKS</div>
       
-      <!-- Top Dropdown Menus (As seen in photo) -->
       <div class="nav-tabs">
         <div class="dropdown">
           <button class="dropbtn">Sofa & Seating ▼</button>
           <div class="dropdown-content">
-            <a href="#collections">Recliners</a>
-            <a href="#collections">L-Shape Sofas</a>
-            <a href="#collections">Wooden Chairs</a>
-          </div>
-        </div>
-        <div class="dropdown">
-          <button class="dropbtn">Living Room ▼</button>
-          <div class="dropdown-content">
-            <a href="#collections">TV Units</a>
-            <a href="#collections">Coffee Tables</a>
+            <a href="javascript:void(0)" onclick="filterCategory('sofas')">Recliners & L-Shape</a>
+            <a href="javascript:void(0)" onclick="filterCategory('chairs')">Accent Chairs</a>
           </div>
         </div>
         <div class="dropdown">
           <button class="dropbtn">Bedroom ▼</button>
           <div class="dropdown-content">
-            <a href="#collections">King Size Beds</a>
-            <a href="#collections">Wardrobes</a>
+            <a href="javascript:void(0)" onclick="filterCategory('beds')">King & Queen Beds</a>
+            <a href="javascript:void(0)" onclick="filterCategory('wardrobes')">Wooden Wardrobes</a>
           </div>
         </div>
         <div class="dropdown">
           <button class="dropbtn">Dining & Kitchen ▼</button>
           <div class="dropdown-content">
-            <a href="#collections">Dining Sets</a>
-            <a href="#collections">Modular Kitchen</a>
+            <a href="javascript:void(0)" onclick="filterCategory('dining')">Solid Wood Dining</a>
+            <a href="javascript:void(0)" onclick="filterCategory('kitchen')">Modular Kitchen Setup</a>
           </div>
         </div>
         <div class="dropdown">
-          <button class="dropbtn">Storage & Shelving ▼</button>
+          <button class="dropbtn">Storage ▼</button>
           <div class="dropdown-content">
-            <a href="#collections">Shoe Racks</a>
-            <a href="#collections">Bookshelves</a>
+            <a href="javascript:void(0)" onclick="filterCategory('storage')">TV Units & Shoe Racks</a>
           </div>
         </div>
 
@@ -131,127 +150,196 @@
   </header>
 
   <div class="container">
-    <!-- Main Animated Banner -->
+    <!-- Hero Slider -->
     <div class="hero-slider">
       <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80');">
         <div class="slide-overlay"></div>
         <div class="slide-content">
           <h1>Crafted For Comfort, Built For Life</h1>
-          <p>Explore Premium Handcrafted & Custom Modular Furniture</p>
+          <p>Explore Handcrafted Teak Wood & Modern Interior Solutions</p>
         </div>
       </div>
       <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80');">
         <div class="slide-overlay"></div>
         <div class="slide-content">
-          <h1>Minimalist Comfort</h1>
-          <p>Discover handcrafted furniture designed for modern living.</p>
+          <h1>Minimalist & Elegant Space</h1>
+          <p>Custom Made Furniture Built According To Your Space & Style</p>
         </div>
       </div>
     </div>
 
-    <!-- Category Shortcuts -->
-    <h2 class="sec-title">Shop By Category</h2>
+    <!-- Category Filter Controls -->
+    <div class="sec-title">Explore Collections</div>
     <div class="category-grid">
-      <div class="cat-card" onclick="openModal('Sofas Collection', 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80', 'Custom Wood Frame & Premium Upholstery')">🛋️ Sofas</div>
-      <div class="cat-card" onclick="openModal('Beds Collection', 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80', 'Solid Teak & Storage Beds')">🛏️ Beds</div>
-      <div class="cat-card" onclick="openModal('Dining Collection', 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80', 'Custom Wood Dining Tables')">🍽️ Dining</div>
-      <div class="cat-card" onclick="openModal('Wardrobe Collection', 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80', 'Sliding & Hinged Wardrobes')">🚪 Wardrobes</div>
-      <div class="cat-card" onclick="openModal('TV Units Collection', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80', 'Modern Wall Mounted Units')">📺 TV Units</div>
-      <div class="cat-card" onclick="openModal('Shoe Racks Collection', 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80', 'Compact & Ventilated Units')">👞 Shoe Racks</div>
+      <div class="cat-card active" onclick="filterCategory('all')">All Items</div>
+      <div class="cat-card" onclick="filterCategory('sofas')">🛋️ Sofas</div>
+      <div class="cat-card" onclick="filterCategory('beds')">🛏️ Beds</div>
+      <div class="cat-card" onclick="filterCategory('dining')">🍽️ Dining</div>
+      <div class="cat-card" onclick="filterCategory('kitchen')">🍳 Kitchen</div>
+      <div class="cat-card" onclick="filterCategory('wardrobes')">🚪 Wardrobes</div>
+      <div class="cat-card" onclick="filterCategory('storage')">📺 TV Units & Storage</div>
     </div>
 
-    <!-- 10 Full Collections Grid -->
-    <h2 class="sec-title" id="collections">Curated Collections</h2>
-    <div class="curated-grid">
-      <div class="curated-card" onclick="openModal('Modular Kitchen Setup', 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80', 'Waterproof Ply | Glossy Finish')">
+    <!-- 10 Full Filterable Collections Grid -->
+    <div class="curated-grid" id="curatedGrid">
+      
+      <div class="curated-card" data-cat="kitchen" onclick="openModal('Modular Kitchen Setup', 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80', 'Waterproof Marine Ply | High Gloss Finish | Soft-close Drawers')">
         <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80" />
-        <div class="curated-info"><div class="curated-title">Modular Kitchen Setup</div></div>
+        <div class="curated-info">
+          <div class="curated-title">Modular Kitchen Setup</div>
+          <div class="curated-sub">Custom Layouts • Waterproof Ply</div>
+        </div>
       </div>
-      <div class="curated-card" onclick="openModal('Solid Wood Dining Set', 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80', 'Teak Wood | Polish Finish')">
+
+      <div class="curated-card" data-cat="dining" onclick="openModal('Solid Wood Dining Set', 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80', 'Pure Teak Wood | Natural Polish Finish | 6 Seater Configuration')">
         <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80" />
-        <div class="curated-info"><div class="curated-title">Solid Wood Dining Set</div></div>
+        <div class="curated-info">
+          <div class="curated-title">Solid Wood Dining Set</div>
+          <div class="curated-sub">6-Seater • Premium Teak Polish</div>
+        </div>
       </div>
-      <div class="curated-card" onclick="openModal('Modern Living Sofa', 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80', 'Premium Fabric Frame')">
+
+      <div class="curated-card" data-cat="sofas" onclick="openModal('Modern Living Sofa', 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80', 'High-density Foam | Heavy Duty Fabric | Solid Wood Underframe')">
         <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" />
-        <div class="curated-info"><div class="curated-title">Modern Living Sofa</div></div>
+        <div class="curated-info">
+          <div class="curated-title">Modern Living Sofa</div>
+          <div class="curated-sub">Soft Cushioning • Custom Colors</div>
+        </div>
       </div>
-      <div class="curated-card" onclick="openModal('Modular Storage Cabinet', 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80', 'Engineered Wood Matte')">
+
+      <div class="curated-card" data-cat="storage" onclick="openModal('Modular Storage Cabinet', 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80', 'Multi-utility Cabinet | Engineered Wood | Durable Matte Laminate')">
         <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80" />
-        <div class="curated-info"><div class="curated-title">Modular Storage Cabinet</div></div>
+        <div class="curated-info">
+          <div class="curated-title">Modular Storage Cabinet</div>
+          <div class="curated-sub">Matte Finish • Multi-Shelves</div>
+        </div>
       </div>
-      <div class="curated-card" onclick="openModal('Teak Wood Bed', 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80', 'Solid Teak Honey Finish')">
+
+      <div class="curated-card" data-cat="beds" onclick="openModal('Teak Wood Bed with Storage', 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80', 'King Size Solid Wood Bed | Hydraulic Hydraulic Storage Mechanism')">
         <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80" />
-        <div class="curated-info"><div class="curated-title">Teak Wood Bed</div></div>
+        <div class="curated-info">
+          <div class="curated-title">Teak Wood Bed</div>
+          <div class="curated-sub">King Size • Hydraulic Storage</div>
+        </div>
       </div>
-      <div class="curated-card" onclick="openModal('Luxury L-Shape Sofa', 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80', 'Velvet Fabric Finish')">
+
+      <div class="curated-card" data-cat="sofas" onclick="openModal('Luxury L-Shape Sofa', 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80', 'Spacious Corner L-Shape Sofa | Royal Velvet Upholstery | Solid Frame')">
         <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80" />
-        <div class="curated-info"><div class="curated-title">Luxury L-Shape Sofa</div></div>
+        <div class="curated-info">
+          <div class="curated-title">Luxury L-Shape Sofa</div>
+          <div class="curated-sub">Corner Living • Velvet Finish</div>
+        </div>
       </div>
-      <div class="curated-card" onclick="openModal('Minimalist Study Table', 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80', 'Sheesham Walnut Polish')">
+
+      <div class="curated-card" data-cat="storage" onclick="openModal('Minimalist Study Desk', 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80', 'Ergonomic Wooden Desk | Integrated Cable Drawer & Side Shelves')">
         <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80" />
-        <div class="curated-info"><div class="curated-title">Minimalist Study Table</div></div>
+        <div class="curated-info">
+          <div class="curated-title">Minimalist Study Table</div>
+          <div class="curated-sub">Compact Desk • Solid Walnut Polish</div>
+        </div>
       </div>
-      <div class="curated-card" onclick="openModal('Custom TV Unit Console', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80', 'Modern Laminate Finish')">
+
+      <div class="curated-card" data-cat="storage" onclick="openModal('Custom TV Unit Console', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80', 'Wall-Mounted TV Console | Warm Backlit LED Slots | Concealed Storage')">
         <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" />
-        <div class="curated-info"><div class="curated-title">Custom TV Unit Console</div></div>
+        <div class="curated-info">
+          <div class="curated-title">Custom TV Unit Console</div>
+          <div class="curated-sub">Modern Wall Unit • Hidden Wiring</div>
+        </div>
       </div>
-      <div class="curated-card" onclick="openModal('Executive Accent Armchair', 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80', 'Leatherette Ergonomic')">
+
+      <div class="curated-card" data-cat="chairs" onclick="openModal('Executive Accent Armchair', 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80', 'Ergonomic Lounge Chair | Solid Oak Wooden Legs | Premium Cushioning')">
         <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" />
-        <div class="curated-info"><div class="curated-title">Executive Accent Armchair</div></div>
+        <div class="curated-info">
+          <div class="curated-title">Executive Accent Armchair</div>
+          <div class="curated-sub">Lounge Comfort • Oak Wood Legs</div>
+        </div>
       </div>
-      <div class="curated-card" onclick="openModal('4-Door Wooden Wardrobe', 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80', 'Solid Plywood Hinges')">
+
+      <div class="curated-card" data-cat="wardrobes" onclick="openModal('4-Door Wooden Wardrobe', 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80', 'Spacious 4-Door Wardrobe | Internal Drawers & Hanging Rods | Soft Hinges')">
         <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80" />
-        <div class="curated-info"><div class="curated-title">4-Door Wooden Wardrobe</div></div>
+        <div class="curated-info">
+          <div class="curated-title">4-Door Wooden Wardrobe</div>
+          <div class="curated-sub">Spacious Shelving • Premium Laminate</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="sec-title">What Our Clients Say</div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p style="font-size:0.88rem; color:var(--text-muted);">"Rinky Furniture Works made our entire flat's modular kitchen and wardrobes in Thane. Superb quality wood and on-time delivery!"</p>
+        <div style="font-weight:bold; margin-top:0.6rem; font-size:0.85rem;">- Amit Sharma, Thane West</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p style="font-size:0.88rem; color:var(--text-muted);">"Got a customized 6-seater teak dining set. Finishing is top notch. Highly recommended!"</p>
+        <div style="font-weight:bold; margin-top:0.6rem; font-size:0.85rem;">- Rajesh Vishwakarma, Puranik City</div>
       </div>
     </div>
+
+    <!-- FAQ Section -->
+    <div class="sec-title">Frequently Asked Questions</div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question"><span>Do you make customized furniture according to size?</span><span>▼</span></div>
+      <div class="faq-answer">Yes! We specialize in custom-built furniture tailored exactly to your home dimensions and design preferences.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question"><span>Do you offer site visits for measurements in Thane?</span><span>▼</span></div>
+      <div class="faq-answer">Absolutely. We provide free site measurement visits across Thane and nearby areas.</div>
+    </div>
+
   </div>
 
-  <!-- Detail Modal -->
+  <!-- Detail Modal with Direct WhatsApp Order -->
   <div class="modal-backdrop" id="imageModal">
     <div class="modal-box">
       <button class="modal-close" onclick="closeModal()">×</button>
       <img src="" id="modalImg" class="modal-img" />
       <div class="modal-body">
-        <h2 id="modalTitle" style="margin-bottom:0.5rem;">Title</h2>
-        <p id="modalDesc" style="color:var(--text-muted); font-size:0.9rem;">Description</p>
+        <h2 id="modalTitle" style="margin-bottom:0.4rem; font-size:1.2rem;">Title</h2>
+        <p id="modalDesc" style="color:var(--text-muted); font-size:0.85rem;">Description</p>
+        <a href="#" id="modalWaBtn" target="_blank" class="btn-wa">💬 Inquire On WhatsApp</a>
       </div>
     </div>
   </div>
 
   <footer>
-    <p>© 2026 RINKY FURNITURE WORKS. Shop No.01 Mahaveer Estella Bldg., Mogarpada Gaon, near PURANIK CITY, Thane (W) - 400615 | Contact: +91 98929 52191</p>
+    <p>© 2026 RINKY FURNITURE WORKS. All rights reserved.</p>
+    <p style="margin-top:0.4rem;">
+      📍 Shop No.01 Mahaveer Estella Bldg., Mogarpada Gaon, near PURANIK CITY, Thane (W) - 400615 | 
+      <a href="https://maps.google.com/?q=Mahaveer+Estella+Thane" target="_blank">📍 View Location on Map</a>
+    </p>
+    <p style="margin-top:0.3rem;">📞 Contact: +91 98929 52191 | +91 90962 28138</p>
   </footer>
 
   <script>
-    // Light / Dark Theme Toggle
+    // Theme Switcher
     function toggleTheme() {
       const currentTheme = document.body.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       document.body.setAttribute('data-theme', newTheme);
     }
 
-    // Modal Display Logic (Makes all cards interactive)
-    function openModal(title, imgSrc, desc) {
-      document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalImg').src = imgSrc;
-      document.getElementById('modalDesc').innerText = desc;
-      document.getElementById('imageModal').classList.add('active');
+    // Category Filter Function
+    function filterCategory(catName) {
+      const cards = document.querySelectorAll('.curated-card');
+      const catBtns = document.querySelectorAll('.cat-card');
+      
+      catBtns.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      cards.forEach(card => {
+        if (catName === 'all' || card.getAttribute('data-cat') === catName) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     }
 
-    function closeModal() {
-      document.getElementById('imageModal').classList.remove('active');
-    }
-
-    // Banner Text Transition
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    if (slides.length > 0) {
-      setInterval(() => {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-      }, 4000);
-    }
-  </script>
-</body>
-</html>
+    // Interactive Modal with Pre-filled WhatsApp Link
+    function openModal(title, imgSrc, de
+                      
