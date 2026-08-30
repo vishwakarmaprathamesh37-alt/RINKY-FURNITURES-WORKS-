@@ -3,446 +3,257 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RINKY FURNITURE WORKS</title>
+  <title>RINKY FURNITURE WORKS - Online Furniture Store</title>
   <style>
     :root {
-      --bg-color: #0b0f19;
-      --card-bg: #161f32;
-      --text-color: #e2e8f0;
-      --accent-color: #00e699;
-      --nav-bg: rgba(11, 15, 25, 0.95);
-      --border-color: #334155;
-    }
-
-    body.light-mode {
-      --bg-color: #f8fafc;
+      --primary: #121212;
+      --accent: #d97706;
+      --bg: #f8fafc;
       --card-bg: #ffffff;
-      --text-color: #0f172a;
-      --accent-color: #059669;
-      --nav-bg: rgba(255, 255, 255, 0.95);
-      --border-color: #cbd5e1;
+      --text: #1e293b;
+      --border: #e2e8f0;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
-      scroll-behavior: smooth;
-      transition: background-color 0.3s, color 0.3s;
-    }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); }
 
-    /* Navigation Header */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2rem;
-      background: var(--nav-bg);
-      position: fixed;
-      top: 0; width: 100%;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    }
-    .logo {
-      font-weight: 800;
-      font-size: 1.2rem;
-      color: var(--accent-color);
-      letter-spacing: 1px;
-    }
-    .hamburger {
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: var(--text-color);
-    }
+    /* Top Announcement Bar */
+    .top-bar { background: var(--primary); color: #fff; text-align: center; padding: 0.6rem; font-size: 0.85rem; font-weight: 500; }
 
-    /* Fullscreen Overlay Menu */
-    .nav-overlay {
-      position: fixed;
-      inset: 0;
-      background: var(--bg-color);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      z-index: 2000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    .nav-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .close-btn {
-      position: absolute;
-      top: 1.5rem;
-      right: 2rem;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-    .nav-overlay a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-    .theme-toggle {
-      margin-top: 1rem;
-      padding: 0.8rem 1.8rem;
-      border-radius: 30px;
-      border: none;
-      background: var(--accent-color);
-      color: #0b0f19;
-      font-weight: 700;
-      cursor: pointer;
-    }
+    /* Header & Navigation */
+    header { background: #fff; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .header-main { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; border-bottom: 1px solid var(--border); }
+    .logo { font-size: 1.4rem; font-weight: 900; color: var(--accent); letter-spacing: 1px; }
 
-    /* Hero Carousel Slider */
-    .hero-slider {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-    }
-    .slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .slide.active { opacity: 1; }
-    .slide-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(11, 15, 25, 0.6);
-    }
-    .slide-content {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      max-width: 800px;
-      padding: 0 1.5rem;
-    }
-    .slide-content h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      color: #ffffff;
-    }
-    .slide-content p {
-      font-size: 1.1rem;
-      color: #cbd5e1;
-    }
+    .nav-links { display: flex; list-style: none; gap: 2rem; padding: 0.8rem 2rem; background: #fff; border-bottom: 1px solid var(--border); }
+    .nav-item { position: relative; font-weight: 600; font-size: 0.9rem; cursor: pointer; padding-bottom: 0.3rem; }
+    .nav-item:hover { color: var(--accent); border-bottom: 2px solid var(--accent); }
 
-    .slider-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.15);
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      padding: 0.8rem 1.2rem;
-      cursor: pointer;
-      border-radius: 50%;
-      z-index: 20;
-    }
-    .prev { left: 1.5rem; }
-    .next { right: 1.5rem; }
+    /* Mega Dropdown Menu */
+    .dropdown { display: none; position: absolute; top: 100%; left: 0; background: #fff; box-shadow: 0 8px 16px rgba(0,0,0,0.1); border-radius: 6px; padding: 1rem; width: 220px; z-index: 100; }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown a { display: block; padding: 0.5rem 0; color: var(--text); text-decoration: none; font-size: 0.85rem; }
+    .dropdown a:hover { color: var(--accent); }
 
-    /* Sections General */
-    section {
-      padding: 5rem 1.5rem 3rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .tagline {
-      color: var(--accent-color);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-    h2.section-title {
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 2rem;
-    }
+    /* Banner / Hero */
+    .hero-banner { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('WhatsApp%20Image%202026-08-29%20at%205.13.59%20PM.jpeg'); background-size: cover; background-position: center; height: 350px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 1rem; }
+    .hero-banner h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
 
-    /* About Section */
-    h1.heading { font-size: 2.2rem; font-weight: 800; margin: 0.5rem 0 1.5rem; line-height: 1.2; }
-    h1.heading span { color: var(--accent-color); }
-    
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin: 2rem 0;
-    }
-    .stat-card {
-      background: var(--card-bg);
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-    }
-    .stat-number { font-size: 2rem; font-weight: 800; color: var(--accent-color); }
-    .stat-label { font-size: 0.8rem; color: #94a3b8; letter-spacing: 1px; }
+    /* Container */
+    .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+    .section-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
 
-    .feature-card {
-      background: var(--card-bg);
-      padding: 2rem;
-      border-radius: 16px;
-      margin-top: 1.5rem;
-      border: 1px solid var(--border-color);
-    }
-    .feature-card h3 { margin-bottom: 0.8rem; font-size: 1.3rem; }
+    /* Category Icons Grid */
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
+    .cat-card { background: var(--card-bg); padding: 1.2rem 1rem; text-align: center; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; transition: 0.3s; }
+    .cat-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .cat-card img { width: 45px; height: 45px; object-fit: contain; margin-bottom: 0.5rem; }
+    .cat-card span { display: block; font-size: 0.85rem; font-weight: 700; }
 
-    /* Curated Collections Grid */
-    .collections-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    .card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border-color);
-      transition: transform 0.3s;
-    }
-    .card:hover { transform: translateY(-5px); }
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-    .card-body { padding: 1.5rem; }
-    .card-body h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
-    .card-body p { font-size: 0.95rem; color: #94a3b8; }
+    /* Shop Layout */
+    .shop-layout { display: grid; grid-template-columns: 240px 1fr; gap: 2rem; }
 
-    /* Contact Section */
-    .contact-form {
-      background: var(--card-bg);
-      padding: 2.5rem;
-      border-radius: 12px;
-      max-width: 600px;
-      margin: 0 auto;
-      border: 1px solid var(--border-color);
-    }
-    .form-group { margin-bottom: 1.2rem; }
-    .form-group label { display: block; margin-bottom: 0.5rem; }
-    .form-group input, .form-group textarea {
-      width: 100%;
-      padding: 0.8rem;
-      border-radius: 6px;
-      border: 1px solid var(--border-color);
-      background: var(--bg-color);
-      color: var(--text-color);
-    }
-    .form-group textarea { height: 120px; resize: vertical; }
-    .submit-btn {
-      width: 100%;
-      padding: 0.9rem;
-      border: none;
-      border-radius: 6px;
-      background: var(--accent-color);
-      color: #0b0f19;
-      font-weight: 700;
-      cursor: pointer;
-    }
+    /* Filter Sidebar */
+    .filter-sidebar { background: var(--card-bg); padding: 1.2rem; border-radius: 8px; border: 1px solid var(--border); height: fit-content; }
+    .filter-group { margin-bottom: 1.5rem; }
+    .filter-group h4 { font-size: 0.95rem; margin-bottom: 0.8rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+    .filter-group label { display: block; font-size: 0.85rem; margin-bottom: 0.5rem; cursor: pointer; color: #475569; }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: var(--card-bg);
-      color: #94a3b8;
-      font-size: 0.85rem;
-      margin-top: 3rem;
+    /* Product Grid */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+    .product-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: 0.3s; }
+    .product-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+    .product-img { width: 100%; height: 220px; object-fit: cover; }
+    .product-details { padding: 1rem; }
+    .product-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .product-material { font-size: 0.75rem; color: #64748b; margin-bottom: 0.8rem; }
+    .price-box { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
+    .price { font-size: 1.1rem; font-weight: 800; color: var(--accent); }
+    .mrp { font-size: 0.85rem; text-decoration: line-through; color: #94a3b8; }
+    .buy-btn { display: block; width: 100%; text-align: center; background: #25d366; color: white; text-decoration: none; padding: 0.6rem; border-radius: 5px; font-weight: 700; font-size: 0.85rem; transition: 0.2s; }
+    .buy-btn:hover { background: #1ebc57; }
+
+    footer { background: var(--primary); color: #fff; text-align: center; padding: 2rem; margin-top: 4rem; font-size: 0.85rem; }
+
+    @media (max-width: 768px) {
+      .shop-layout { grid-template-columns: 1fr; }
+      .nav-links { overflow-x: auto; white-space: nowrap; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Header -->
+  <div class="top-bar">✨ Special Offer: Premium Solid Wood Furniture & Custom Interior Design Work!</div>
+
   <header>
-    <div class="logo">RINKY FURNITURE WORKS</div>
-    <div class="hamburger" id="openMenu">&#9776;</div>
+    <div class="header-main">
+      <div class="logo">RINKY FURNITURE WORKS</div>
+    </div>
+
+    <!-- Mega Navigation Bar -->
+    <ul class="nav-links">
+      <li class="nav-item">
+        Sofas & Seating
+        <div class="dropdown">
+          <a href="#">3 Seater Sofas</a>
+          <a href="#">L-Shape Sofas</a>
+          <a href="#">Recliners</a>
+          <a href="#">Sofa Cum Beds</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        Living Room
+        <div class="dropdown">
+          <a href="#">TV Units</a>
+          <a href="#">Coffee Tables</a>
+          <a href="#">Shoe Racks</a>
+          <a href="#">Bookshelves</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        Bedroom
+        <div class="dropdown">
+          <a href="#">King Size Beds</a>
+          <a href="#">Queen Size Beds</a>
+          <a href="#">Modular Wardrobes</a>
+          <a href="#">Dressing Tables</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        Dining & Kitchen
+        <div class="dropdown">
+          <a href="#">4 Seater Dining Sets</a>
+          <a href="#">6 Seater Dining Sets</a>
+          <a href="#">Kitchen Cabinets</a>
+          <a href="#">Modular Fittings</a>
+        </div>
+      </li>
+      <li class="nav-item">Storage & Shelving</li>
+    </ul>
   </header>
 
-  <!-- Overlay Navigation -->
-  <div class="nav-overlay" id="navOverlay">
-    <div class="close-btn" id="closeMenu">&times;</div>
-    <a href="#home" onclick="toggleMenu()">HOME</a>
-    <a href="#about" onclick="toggleMenu()">ABOUT</a>
-    <a href="#collections" onclick="toggleMenu()">COLLECTIONS</a>
-    <a href="#contact" onclick="toggleMenu()">CONTACT</a>
-    <button class="theme-toggle" id="themeBtn">☀ LIGHT MODE</button>
+  <!-- Banner -->
+  <div class="hero-banner">
+    <h1>Crafted For Comfort, Built For Life</h1>
+    <p>Explore Premium Handcrafted & Custom Modular Furniture</p>
   </div>
 
-  <!-- Hero Carousel Slider -->
-  <div class="hero-slider" id="home">
-    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=80');">
-      <div class="slide-overlay"></div>
-      <div class="slide-content">
-        <h1>Sustainable Materials</h1>
-        <p>Crafted with precision using eco-friendly resources that don't compromise on durability or style.</p>
-      </div>
+  <div class="container">
+    
+    <!-- Shop By Category -->
+    <h2 class="section-title">Shop By Category</h2>
+    <div class="category-grid">
+      <div class="cat-card"><img src="https://cdn-icons-png.flaticon.com/512/2400/2400629.png" alt="Sofas" /><span>Sofas</span></div>
+      <div class="cat-card"><img src="https://cdn-icons-png.flaticon.com/512/3030/3030336.png" alt="Beds" /><span>Beds</span></div>
+      <div class="cat-card"><img src="https://cdn-icons-png.flaticon.com/512/2258/2258416.png" alt="Dining" /><span>Dining</span></div>
+      <div class="cat-card"><img src="https://cdn-icons-png.flaticon.com/512/3882/3882223.png" alt="Wardrobes" /><span>Wardrobes</span></div>
+      <div class="cat-card"><img src="https://cdn-icons-png.flaticon.com/512/1520/1520709.png" alt="TV Units" /><span>TV Units</span></div>
+      <div class="cat-card"><img src="https://cdn-icons-png.flaticon.com/512/2965/2965318.png" alt="Shoe Racks" /><span>Shoe Racks</span></div>
     </div>
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80');">
-      <div class="slide-overlay"></div>
-      <div class="slide-content">
-        <h1>Minimalist Comfort</h1>
-        <p>Discover pieces designed for living with clean lines and modern aesthetics tailored for your space.</p>
+
+    <!-- Shop Main Layout -->
+    <h2 class="section-title">Featured Collections</h2>
+    <div class="shop-layout">
+      
+      <!-- Filter Sidebar -->
+      <div class="filter-sidebar">
+        <div class="filter-group">
+          <h4>Material</h4>
+          <label><input type="checkbox" checked /> Solid Teak Wood</label>
+          <label><input type="checkbox" /> Sheesham Wood</label>
+          <label><input type="checkbox" /> Engineered Wood</label>
+        </div>
+        <div class="filter-group">
+          <h4>Price Range</h4>
+          <label><input type="checkbox" /> Under ₹10,000</label>
+          <label><input type="checkbox" checked /> ₹10,000 - ₹25,000</label>
+          <label><input type="checkbox" /> Above ₹25,000</label>
+        </div>
+        <div class="filter-group">
+          <h4>Seating Capacity</h4>
+          <label><input type="checkbox" /> 2 Seater</label>
+          <label><input type="checkbox" /> 4 Seater</label>
+          <label><input type="checkbox" /> 6 Seater</label>
+        </div>
       </div>
-    </div>
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80');">
-      <div class="slide-overlay"></div>
-      <div class="slide-content">
-        <h1>The Workspace Redefined</h1>
-        <p>Elevate your productivity with ergonomic designs built for the modern professional.</p>
+
+      <!-- Product Items Grid -->
+      <div class="product-grid">
+        
+        <div class="product-card">
+          <img src="WhatsApp%20Image%202026-08-29%20at%205.13.59%20PM.jpeg" class="product-img" alt="Furniture Item 1" />
+          <div class="product-details">
+            <div class="product-title">Custom Kitchen Modular Setup</div>
+            <div class="product-material">Waterproof Ply | Glossy Finish</div>
+            <div class="price-box">
+              <span class="price">₹24,999</span>
+              <span class="mrp">₹35,000</span>
+            </div>
+            <a href="https://wa.me/?text=Hi%2C%20I%20am%20interested%20in%20Custom%20Kitchen%20Modular%20Setup" class="buy-btn" target="_blank">Inquire on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img src="WhatsApp%20Image%202026-08-29%20at%205.21.51%20PM.jpeg" class="product-img" alt="Furniture Item 2" />
+          <div class="product-details">
+            <div class="product-title">Solid Wood Dining Chair & Table</div>
+            <div class="product-material">Teak Wood | Polish Finish</div>
+            <div class="price-box">
+              <span class="price">₹18,499</span>
+              <span class="mrp">₹24,000</span>
+            </div>
+            <a href="https://wa.me/?text=Hi%2C%20I%20am%20interested%20in%20Solid%20Wood%20Dining%20Set" class="buy-btn" target="_blank">Inquire on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img src="WhatsApp%20Image%202026-08-29%20at%205.24.36%20PM.jpeg" class="product-img" alt="Furniture Item 3" />
+          <div class="product-details">
+            <div class="product-title">Modern Living Room Sofa</div>
+            <div class="product-material">Premium Fabric | Hardwood Frame</div>
+            <div class="price-box">
+              <span class="price">₹21,999</span>
+              <span class="mrp">₹30,000</span>
+            </div>
+            <a href="https://wa.me/?text=Hi%2C%20I%20am%20interested%20in%20Modern%20Living%20Room%20Sofa" class="buy-btn" target="_blank">Inquire on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img src="WhatsApp%20Image%202026-08-29%20at%205.31.34%20PM.jpeg" class="product-img" alt="Furniture Item 4" />
+          <div class="product-details">
+            <div class="product-title">Modular Storage Cabinet / Wardrobe</div>
+            <div class="product-material">Engineered Wood | Matte Finish</div>
+            <div class="price-box">
+              <span class="price">₹15,999</span>
+              <span class="mrp">₹22,000</span>
+            </div>
+            <a href="https://wa.me/?text=Hi%2C%20I%20am%20interested%20in%20Modular%20Storage%20Cabinet" class="buy-btn" target="_blank">Inquire on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img src="WhatsApp%20Image%202026-08-29%20at%205.31.35%20PM.jpeg" class="product-img" alt="Furniture Item 5" />
+          <div class="product-details">
+            <div class="product-title">Designer Wood Storage Rack</div>
+            <div class="product-material">Solid Teak Wood | Natural Finish</div>
+            <div class="price-box">
+              <span class="price">₹11,499</span>
+              <span class="mrp">₹16,000</span>
+            </div>
+            <a href="https://wa.me/?text=Hi%2C%20I%20am%20interested%20in%20Designer%20Wood%20Storage%20Rack" class="buy-btn" target="_blank">Inquire on WhatsApp</a>
+          </div>
+        </div>
+
       </div>
+
     </div>
-    <button class="slider-arrow prev" id="prevBtn">&#10094;</button>
-    <button class="slider-arrow next" id="nextBtn">&#10095;</button>
+
   </div>
-
-  <!-- About / Journey Section -->
-  <section id="about">
-    <div class="tagline">THE JOURNEY</div>
-    <h1 class="heading">From a small workshop to a <span>design powerhouse.</span></h1>
-    <p>What started in a small, dusty garage as a passion for restoring vintage chairs has evolved into RINKY FURNITURE WORKS. We recognized early on that furniture isn't just functional; it is the silent witness to your life's best moments.</p>
-    <br>
-    <p>Our philosophy is rooted in the belief that true luxury lies in the details. By sourcing sustainable materials and employing master craftsmen, we ensure that every cut, every joint, and every polish is executed with uncompromising perfection.</p>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number">25+</div>
-        <div class="stat-label">YEARS OF MASTERY</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">15k</div>
-        <div class="stat-label">PIECES DELIVERED</div>
-      </div>
-    </div>
-
-    <div class="feature-card">
-      <h3>Sustainability First</h3>
-      <p>We source our timber exclusively from certified sustainable forests and utilize non-toxic, eco-friendly finishes to protect both your home and our planet.</p>
-    </div>
-
-    <div class="feature-card">
-      <h3>Uncompromised Quality</h3>
-      <p>We do not believe in mass production. Every joint is inspected, every fabric is tested, ensuring that the furniture you buy today becomes a family heirloom tomorrow.</p>
-    </div>
-  </section>
-
-  <!-- Curated Collections Section -->
-  <section id="collections">
-    <div class="tagline">OUR WORK</div>
-    <h2 class="section-title">Curated Collections</h2>
-    <div class="collections-grid">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80" alt="Kitchen Fittings" />
-        <div class="card-body">
-          <h3>Kitchen Fittings</h3>
-          <p>Sleek, durable hardware designed to elevate your daily cooking and storage experience.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=600&q=80" alt="Dining Essentials" />
-        <div class="card-body">
-          <h3>Dining Essentials</h3>
-          <p>Built to last generations. Crafted from responsibly sourced timber.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=80" alt="Modular Shelving" />
-        <div class="card-body">
-          <h3>Modular Shelving</h3>
-          <p>Adaptable storage solutions that grow and change with your space.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="tagline">GET IN TOUCH</div>
-    <h2 class="section-title">Contact Us</h2>
-    <form class="contact-form" onsubmit="event.preventDefault(); alert('Message Sent!');">
-      <div class="form-group">
-        <label>Name</label>
-        <input type="text" required placeholder="Your Full Name" />
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" required placeholder="your.email@example.com" />
-      </div>
-      <div class="form-group">
-        <label>Message</label>
-        <textarea required placeholder="How can we help you?"></textarea>
-      </div>
-      <button type="submit" class="submit-btn">Send Message</button>
-    </form>
-  </section>
 
   <footer>
-    &copy; 2026 RINKY FURNITURE WORKS. All rights reserved.
+    &copy; 2026 RINKY FURNITURE WORKS. All Rights Reserved.
   </footer>
 
-  <script>
-    // Navigation Menu
-    const openMenu = document.getElementById('openMenu');
-    const closeMenu = document.getElementById('closeMenu');
-    const navOverlay = document.getElementById('navOverlay');
-    const themeBtn = document.getElementById('themeBtn');
-
-    function toggleMenu() {
-      navOverlay.classList.toggle('active');
-    }
-    openMenu.addEventListener('click', toggleMenu);
-    closeMenu.addEventListener('click', toggleMenu);
-
-    themeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('light-mode');
-      themeBtn.textContent = document.body.classList.contains('light-mode') ? '🌙 DARK MODE' : '☀ LIGHT MODE';
-    });
-
-    // Slider Logic
-    const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let currentSlide = 0;
-
-    function updateSlide() {
-      slides.forEach((slide, index) => {
-        slide.classList.toggle('active', index === currentSlide);
-      });
-    }
-
-    nextBtn.addEventListener('click', () => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      updateSlide();
-    });
-
-    prevBtn.addEventListener('click', () => {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      updateSlide();
-    });
-
-    setInterval(() => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      updateSlide();
-    }, 4000);
-  </script>
 </body>
 </html>
