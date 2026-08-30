@@ -6,91 +6,93 @@
   <title>RINKY FURNITURE WORKS</title>
   <style>
     :root {
-      --bg-color: #f1f5f9;
+      --bg-color: #f8fafc;
       --card-bg: #ffffff;
       --text-color: #0f172a;
       --text-muted: #475569;
       --accent: #d97706;
       --accent-hover: #b45309;
-      --border-color: #cbd5e1;
+      --border-color: #e2e8f0;
       --nav-bg: rgba(255, 255, 255, 0.95);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; transition: all 0.3s ease; }
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
 
-    .top-bar { background: var(--accent); color: #fff; text-align: center; padding: 0.5rem; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px; }
+    /* Top Banner */
+    .top-bar { background: var(--accent); color: #ffffff; text-align: center; padding: 0.5rem; font-size: 0.85rem; font-weight: 700; }
 
-    header { position: sticky; top: 0; z-index: 1000; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .header-wrapper { display: flex; justify-content: space-between; align-items: center; padding: 1rem 3rem; max-width: 1400px; margin: 0 auto; }
-    .logo { font-size: 1.3rem; font-weight: 900; color: var(--accent); letter-spacing: 1px; cursor: pointer; }
+    /* Header Nav */
+    header { position: sticky; top: 0; z-index: 1000; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .header-wrapper { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; max-width: 1300px; margin: 0 auto; }
+    .logo { font-size: 1.3rem; font-weight: 900; color: var(--accent); cursor: pointer; letter-spacing: 0.5px; }
 
-    .nav-tabs { display: flex; gap: 2rem; list-style: none; }
-    .nav-tab { font-size: 0.9rem; font-weight: 700; color: var(--text-muted); cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; position: relative; padding: 0.4rem 0; }
+    .nav-tabs { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-tab { font-size: 0.9rem; font-weight: 700; color: var(--text-muted); cursor: pointer; text-transform: uppercase; padding: 0.4rem 0; position: relative; }
     .nav-tab:hover, .nav-tab.active { color: var(--accent); }
     .nav-tab.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: var(--accent); border-radius: 2px; }
 
-    .page-section { display: none; opacity: 0; padding: 2.5rem 0; }
+    /* Page Sections */
+    .page-section { display: none; opacity: 0; padding: 2rem 0; transition: opacity 0.4s ease; }
     .page-section.active { display: block; opacity: 1; }
-    .container { max-width: 1250px; margin: 0 auto; padding: 0 1.5rem; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
     /* Hero Slider */
-    .hero-slider { position: relative; height: 420px; border-radius: 16px; overflow: hidden; margin-bottom: 3rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-    .slide { position: absolute; inset: 0; opacity: 0; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+    .hero-slider { position: relative; height: 380px; border-radius: 16px; overflow: hidden; margin-bottom: 2.5rem; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease-in-out; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
     .slide.active { opacity: 1; }
     .slide-overlay { position: absolute; inset: 0; background: rgba(15, 23, 42, 0.55); }
-    .slide-content { position: relative; z-index: 2; max-width: 750px; color: #fff; }
-    .slide-content h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 0.8rem; }
-    .slide-content p { font-size: 1.15rem; color: #f8fafc; }
+    .slide-content { position: relative; z-index: 2; max-width: 700px; color: #ffffff; }
+    .slide-content h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.8rem; }
+    .slide-content p { font-size: 1.1rem; }
 
-    .sec-title { font-size: 1.6rem; font-weight: 800; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--text-color); }
+    .sec-title { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 1.5rem; }
 
     /* Category Cards */
-    .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 4rem; }
-    .cat-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.2rem; text-align: center; cursor: pointer; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-    .cat-card:hover { border-color: var(--accent); transform: translateY(-3px); color: var(--accent); }
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 3.5rem; }
+    .cat-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1rem; text-align: center; cursor: pointer; font-weight: 700; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+    .cat-card:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-    /* Curated Collections Grid (10 Items) */
-    .curated-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.8rem; }
-    .curated-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; overflow: hidden; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .curated-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-    .curated-card img { width: 100%; height: 210px; object-fit: cover; }
+    /* Collection Cards Grid */
+    .curated-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+    .curated-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; overflow: hidden; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+    .curated-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .curated-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
     .curated-info { padding: 1.2rem; }
-    .curated-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.3rem; color: var(--text-color); }
+    .curated-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem; }
 
-    /* Image Modal */
-    .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    /* Modal Popup */
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 1rem; }
     .modal-backdrop.active { display: flex; }
-    .modal-box { background: var(--card-bg); border-radius: 16px; max-width: 800px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-    .modal-img { width: 100%; height: 100%; min-height: 320px; object-fit: cover; }
+    .modal-box { background: var(--card-bg); border-radius: 16px; max-width: 750px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+    .modal-img { width: 100%; height: 100%; min-height: 300px; object-fit: cover; }
     .modal-body { padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
-    .modal-close { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.6); color: #fff; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
-    .btn-action { background: var(--accent); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 1.5rem; width: fit-content; }
+    .modal-close { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: #fff; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; line-height: 1; }
+    .btn-action { background: var(--accent); color: #fff; border: none; padding: 0.7rem 1.4rem; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 1.2rem; width: fit-content; }
 
     /* About Section */
-    .about-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 3rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
-    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-    .stat-box { background: var(--bg-color); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 12px; text-align: center; }
-    .stat-val { font-size: 2.2rem; font-weight: 900; color: var(--accent); }
+    .about-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .stat-box { background: var(--bg-color); border: 1px solid var(--border-color); padding: 1.2rem; border-radius: 12px; text-align: center; }
+    .stat-val { font-size: 2rem; font-weight: 900; color: var(--accent); }
 
     /* Contact Section */
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .info-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-    .contact-form { background: var(--card-bg); border: 1px solid var(--border-color); padding: 2rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
-    .form-group { margin-bottom: 1.2rem; }
+    .info-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 1.4rem; border-radius: 12px; margin-bottom: 1rem; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+    .contact-form { background: var(--card-bg); border: 1px solid var(--border-color); padding: 2rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .form-group { margin-bottom: 1rem; }
     .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .form-group input, .form-group textarea { width: 100%; padding: 0.8rem; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); outline: none; }
-    .submit-btn { width: 100%; background: var(--accent); color: white; font-weight: 800; border: none; padding: 0.9rem; border-radius: 8px; cursor: pointer; }
-    .submit-btn:hover { background: var(--accent-hover); }
+    .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); outline: none; }
+    .submit-btn { width: 100%; background: var(--accent); color: #fff; font-weight: 800; border: none; padding: 0.85rem; border-radius: 8px; cursor: pointer; }
 
-    footer { text-align: center; padding: 2.5rem; background: var(--card-bg); border-top: 1px solid var(--border-color); margin-top: 4rem; font-size: 0.85rem; color: var(--text-muted); }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border-color); margin-top: 3.5rem; font-size: 0.85rem; color: var(--text-muted); background: var(--card-bg); }
 
     @media (max-width: 768px) {
-      .header-wrapper { padding: 1rem; flex-direction: column; gap: 1rem; }
+      .header-wrapper { padding: 1rem; flex-direction: column; gap: 0.8rem; }
       .contact-grid, .modal-box { grid-template-columns: 1fr; }
-      .hero-slider { height: 300px; }
-      .slide-content h1 { font-size: 1.8rem; }
+      .hero-slider { height: 280px; }
+      .slide-content h1 { font-size: 1.6rem; }
     }
   </style>
 </head>
@@ -114,20 +116,20 @@
   <section id="page-home" class="page-section active">
     <div class="container">
       
-      <!-- Contextual Hero Slider -->
+      <!-- Auto Hero Slider -->
       <div class="hero-slider">
         <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80');">
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <h1>Minimalist Comfort</h1>
-            <p>Discover handcrafted furniture designed for modern aesthetic living.</p>
+            <p>Discover handcrafted furniture designed for modern living.</p>
           </div>
         </div>
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80');">
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <h1>The Workspace Redefined</h1>
-            <p>Elevate your productivity with custom wood & modular interior designs.</p>
+            <p>Elevate your productivity with custom wood interior designs.</p>
           </div>
         </div>
       </div>
@@ -146,7 +148,7 @@
       <h2 class="sec-title">Curated Collections</h2>
       <div class="curated-grid">
         <div class="curated-card" onclick="openModal('Modular Kitchen Setup', 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80', 'Waterproof Ply | Glossy Finish')">
-          <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80" alt="Kitchen Setup" />
+          <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80" alt="Modular Kitchen" />
           <div class="curated-info">
             <div class="curated-title">Modular Kitchen Setup</div>
             <div style="color:var(--text-muted); font-size:0.85rem;">Click to view details</div>
@@ -159,10 +161,10 @@
             <div style="color:var(--text-muted); font-size:0.85rem;">Click to view details</div>
           </div>
         </div>
-        <div class="curated-card" onclick="openModal('Modern Living Room Sofa', 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80', 'Premium Fabric | Hardwood Frame')">
-          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" alt="Living Room Sofa" />
+        <div class="curated-card" onclick="openModal('Modern Living Sofa', 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80', 'Premium Fabric | Hardwood Frame')">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" alt="Living Sofa" />
           <div class="curated-info">
-            <div class="curated-title">Modern Living Room Sofa</div>
+            <div class="curated-title">Modern Living Sofa</div>
             <div style="color:var(--text-muted); font-size:0.85rem;">Click to view details</div>
           </div>
         </div>
@@ -175,7 +177,7 @@
   <section id="page-about" class="page-section">
     <div class="container">
       <div class="about-box">
-        <h1 style="font-size:2.2rem; font-weight:800; margin-bottom:1rem;">Transforming Houses into Curated Sanctuaries</h1>
+        <h1 style="font-size:2rem; font-weight:800; margin-bottom:1rem;">Transforming Houses into Curated Sanctuaries</h1>
         <p style="color:var(--text-muted); font-size:1.05rem;">At Rinky Furniture Works, we believe furniture should do more than fill a space. It should enhance everyday living through traditional wood craftsmanship combined with modern innovation.</p>
         
         <div class="stats-row">
@@ -192,65 +194,67 @@
     </div>
   </section>
 
-  <!-- COLLECTIONS PAGE (10 ITEMS) -->
+  <!-- COLLECTIONS PAGE (10 ITEMS FULLY FUNCTIONAL) -->
   <section id="page-collections" class="page-section">
     <div class="container">
       <h2 class="sec-title">All Masterpiece Collections</h2>
       <div class="curated-grid">
+        
         <div class="curated-card" onclick="openModal('Modular Storage Cabinet', 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80', 'Engineered Wood | Matte Finish')">
-          <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80" alt="Modular Storage Cabinet" />
+          <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80" alt="Modular Cabinet" />
           <div class="curated-info"><div class="curated-title">Modular Storage Cabinet</div></div>
         </div>
 
-        <div class="curated-card" onclick="openModal('Teak Wood Bed', 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80', 'Solid Teak | Natural Honey Finish')">
-          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80" alt="Teak Wood Bed" />
-          <div class="curated-info"><div class="curated-title">Teak Wood King Bed</div></div>
+        <div class="curated-card" onclick="openModal('Teak Wood Bed', 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80', 'Solid Teak | Honey Finish')">
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80" alt="Teak Bed" />
+          <div class="curated-info"><div class="curated-title">Teak Wood Bed</div></div>
         </div>
 
-        <div class="curated-card" onclick="openModal('Luxury L-Shape Sofa', 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80', 'Velvet Upholstery | Solid Frame')">
-          <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80" alt="Luxury L-Shape Sofa" />
+        <div class="curated-card" onclick="openModal('Luxury L-Shape Sofa', 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80', 'Velvet Fabric | Hardwood Frame')">
+          <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80" alt="Luxury Sofa" />
           <div class="curated-info"><div class="curated-title">Luxury L-Shape Sofa</div></div>
         </div>
 
-        <div class="curated-card" onclick="openModal('Minimalist Study Table', 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80', 'Sheesham Wood | Walnut Finish')">
-          <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80" alt="Study Table" />
-          <div class="curated-info"><div class="curated-title">Minimalist Study Desk</div></div>
+        <div class="curated-card" onclick="openModal('Minimalist Study Table', 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80', 'Sheesham Wood | Walnut Polish')">
+          <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80" alt="Study Desk" />
+          <div class="curated-info"><div class="curated-title">Minimalist Study Table</div></div>
         </div>
 
-        <div class="curated-card" onclick="openModal('Custom TV Unit Cabinet', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80', 'Modern Laminate | Warm LED Accent')">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="TV Unit Cabinet" />
+        <div class="curated-card" onclick="openModal('Custom TV Unit Console', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80', 'Modern Laminate | Soft Warm Accent')">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="TV Unit" />
           <div class="curated-info"><div class="curated-title">Custom TV Unit Console</div></div>
         </div>
 
-        <div class="curated-card" onclick="openModal('Executive Recliners', 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80', 'Leatherette Upholstery | Ergonomic')">
-          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" alt="Recliner Chair" />
+        <div class="curated-card" onclick="openModal('Executive Accent Armchair', 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80', 'Leatherette Finish | Ergonomic')">
+          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" alt="Armchair" />
           <div class="curated-info"><div class="curated-title">Executive Accent Armchair</div></div>
         </div>
 
-        <div class="curated-card" onclick="openModal('4-Door Wooden Wardrobe', 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80', 'Solid Wood Frame | Soft Close Doors')">
-          <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80" alt="Wooden Wardrobe" />
+        <div class="curated-card" onclick="openModal('4-Door Wooden Wardrobe', 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80', 'Solid Plywood | Soft Close Hinge')">
+          <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80" alt="Wardrobe" />
           <div class="curated-info"><div class="curated-title">4-Door Wooden Wardrobe</div></div>
         </div>
 
-        <div class="curated-card" onclick="openModal('Modern Coffee Table', 'https://images.unsplash.com/photo-1532372576444-dda954194ad0?auto=format&fit=crop&w=800&q=80', 'Solid Wood Top | Matte Black Metal Legs')">
+        <div class="curated-card" onclick="openModal('Contemporary Coffee Table', 'https://images.unsplash.com/photo-1532372576444-dda954194ad0?auto=format&fit=crop&w=800&q=80', 'Wood Top | Matte Metal Legs')">
           <img src="https://images.unsplash.com/photo-1532372576444-dda954194ad0?auto=format&fit=crop&w=800&q=80" alt="Coffee Table" />
           <div class="curated-info"><div class="curated-title">Contemporary Coffee Table</div></div>
         </div>
 
-        <div class="curated-card" onclick="openModal('Ergonomic Shoe Storage', 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80', 'Ventilated Shelves | Engineered Wood')">
-          <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80" alt="Shoe Rack" />
+        <div class="curated-card" onclick="openModal('Multi-tier Shoe Organizer', 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80', 'Ventilated Shelves | Moisture Proof')">
+          <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80" alt="Shoe Storage" />
           <div class="curated-info"><div class="curated-title">Multi-tier Shoe Organizer</div></div>
         </div>
 
-        <div class="curated-card" onclick="openModal('Luxury Dressing Unit', 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80', 'Full-Length Mirror | Concealed Storage')">
+        <div class="curated-card" onclick="openModal('Luxury Vanity Dressing Unit', 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80', 'Full-Length Mirror | Concealed Drawers')">
           <img src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80" alt="Dressing Unit" />
           <div class="curated-info"><div class="curated-title">Luxury Vanity Dressing Unit</div></div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- CONTACT PAGE -->
+  <!-- CONTACT PAGE (UPDATED ADDRESS & PHONES) -->
   <section id="page-contact" class="page-section">
     <div class="container">
       <h2 class="sec-title" style="margin-bottom:2rem;">Get In Touch With Us</h2>
@@ -266,7 +270,7 @@
           </div>
           <div class="info-card">
             <h4 style="font-size:1.1rem; margin-bottom:0.4rem; color:var(--accent);">📞 Call or WhatsApp</h4>
-            <p style="color:var(--text-muted); font-size:0.95rem;">+91 98929 52191 (Call/WhatsApp)<br/>+91 90962 28138</p>
+            <p style="color:var(--text-muted); font-size:0.95rem;">+91 98929 52191 (Call & WhatsApp)<br/>+91 90962 28138</p>
           </div>
         </div>
 
@@ -274,7 +278,7 @@
           <h3 style="margin-bottom:1.5rem;">Send a Message</h3>
           <div class="form-group">
             <label>Name</label>
-            <input type="text" placeholder="Your Full Name" />
+            <input type="text" placeholder="Your Name" />
           </div>
           <div class="form-group">
             <label>Email Address</label>
@@ -290,13 +294,13 @@
     </div>
   </section>
 
-  <!-- Image Modal Popup -->
+  <!-- Image Detail Modal -->
   <div class="modal-backdrop" id="imageModal">
     <div class="modal-box">
       <button class="modal-close" onclick="closeModal()">×</button>
-      <img src="" id="modalImg" class="modal-img" alt="Modal View" />
+      <img src="" id="modalImg" class="modal-img" alt="Modal Detail View" />
       <div class="modal-body">
-        <h2 id="modalTitle" style="font-weight:800; margin-bottom:0.5rem; color:var(--text-color);">Title</h2>
+        <h2 id="modalTitle" style="font-weight:800; margin-bottom:0.5rem;">Title</h2>
         <p id="modalDesc" style="color:var(--text-muted); font-size:0.95rem; margin-bottom:1rem;">Material specs</p>
         <button class="btn-action" onclick="closeModal()">CLOSE VIEW</button>
       </div>
@@ -308,12 +312,15 @@
   </footer>
 
   <script>
-    // SPA Switching
+    // Tab Router Switcher
     function switchTab(tabId) {
       document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
       document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
 
-      document.getElementById('page-' + tabId).classList.add('active');
-      const activeNav = document.getElementById('tab-' + tabId);
-      if(activeNav) activeNav.classList.add('active');
-      window.
+      const targetSection = document.getElementById('page-' + tabId);
+      const targetNav = document.getElementById('tab-' + tabId);
+
+      if (targetSection) targetSection.classList.add('active');
+      if (targetNav) targetNav.classList.add('active');
+
+      window.scroll
